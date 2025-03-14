@@ -82,7 +82,7 @@ local function assigntracers()
                 end
             end
 
-            if getgenv().Esptracers then
+            if getgenv().Esptracers == true then
                 local attach0 = Instance.new("Attachment", localchar:WaitForChild("HumanoidRootPart"))
                 local attach1 = Instance.new("Attachment", playerChar:WaitForChild("HumanoidRootPart"))
 
@@ -107,19 +107,6 @@ players.PlayerAdded:Connect(function(player)
     player.CharacterAdded:Wait()  -- Ensure the character is loaded
     assigntracers()
 end)
-
-local EspToggle = Tab:CreateToggle({
-   Name = "ESP tracer",
-   CurrentValue = false,
-   Flag = "Toggle1", 
-   Callback = function(Value)
-      if Value == true then
-         getgenv().Esptracers = true
-      elseif Value == false then
-         getgenv().Esptracers = false
-      end
-   end,
-})
 
 
 local Loadstrings = window:CreateTab("Loadstrings/scripts")

@@ -49,7 +49,7 @@ local SpeedSlider = Tab:CreateSlider({
    end,
 })
 
-local button = Tab:CreateButton({
+local button1 = Tab:CreateButton({
 	Name = "Reset Speed",
 	Callback = function()
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16

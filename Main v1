@@ -58,6 +58,71 @@ local button = Tab:CreateButton({
 	end,
 })
 
+getgenv().Esptracers = false
+local players = game:GetService("Players")
+local localplr = players.LocalPlayer
+
+local function assigntracers()
+    for _, player in pairs(players:GetPlayers()) do
+        if player ~= localplr then
+            local playerChar = game.Workspace:FindFirstChild(player.Name)
+            local localchar = localplr.Character or localplr.CharacterAdded:Wait()
+
+            if not playerChar or not localchar or not localchar:FindFirstChild("HumanoidRootPart") then
+                return
+            end
+
+            local beam
+            if playerChar and localchar then
+                if playerChar:FindFirstChild("xddddyes") then
+                    beam = playerChar:FindFirstChild("xddddyes")
+                    if beam then
+                        beam.Enabled = getgenv().Esptracers
+                    end
+                end
+            end
+
+            if getgenv().Esptracers then
+                local attach0 = Instance.new("Attachment", localchar:WaitForChild("HumanoidRootPart"))
+                local attach1 = Instance.new("Attachment", playerChar:WaitForChild("HumanoidRootPart"))
+
+                beam = Instance.new("Beam")
+                beam.Name = "xddddyes"
+                beam.Attachment0 = attach0
+                beam.Attachment1 = attach1
+                beam.FaceCamera = true
+                beam.Width1 = 0.1
+                beam.Width0 = 0.1
+                beam.Parent = playerChar
+            end
+        end
+    end
+end
+
+-- Initial tracer assignment
+assigntracers()
+
+-- Listen for when players are added to the game
+players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Wait()  -- Ensure the character is loaded
+    assigntracers()
+end)
+
+local EspToggle = Tab:CreateToggle({
+   Name = "ESP tracer",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+if (Value) = true then
+   getgenv().Esptracers = true
+   elseif (Value) = false then
+   getgenv().Esptracers = false
+end
+
+end)
+   end,
+})
+
 local Loadstrings = window:CreateTab("Loadstrings/scripts")
 local Section2 = Loadstrings:CreateSection("Scripts")
 

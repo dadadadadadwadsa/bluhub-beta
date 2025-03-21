@@ -58,6 +58,103 @@ local button1 = Tab:CreateButton({
 	end,
 })
 
+local button2 = Tab:CreateButton({
+	Name = "KJ dropkick universal (NOT FE)",
+	Callback = function()
+		-- DROPKICK --
+local player = game.Players.LocalPlayer
+local backpack = player:WaitForChild("Backpack")
+ 
+-- Create the tool
+local tool = Instance.new("Tool")
+tool.Name = "20-20-20 Dropkick"
+tool.RequiresHandle = false  -- No handle needed
+ 
+-- Function to play animation, sound, and make the player walk
+tool.Activated:Connect(function()
+    -- Load Animator if not already loaded
+    if not getgenv()["Animator"] then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/xhayper/Animator/main/Source/Main.lua"))()
+    end
+ 
+    local character = player.Character
+    if not character then return end
+ 
+    -- Play animation
+    local Anim = Animator.new(character, 79724659273649)
+    Anim:Play()
+ 
+    -- Play sound
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://18511513629"
+    sound.Volume = 2  -- Adjust volume if needed
+    sound.Parent = character
+    sound:Play()
+ 
+    -- Set player's walkspeed to 30 and force them to walk
+	task.wait(2)
+    local sped = 85
+    local move = Instance.new("BodyVelocity", player.Character.HumanoidRootPart)
+    move.MaxForce = Vector3.new(math.huge, math.huge, math.huge)  -- Max force applied to movement
+    move.Velocity = player.Character.HumanoidRootPart.CFrame.LookVector * sped
+    move.P = 10000
+--partacle
+    local part = Instance.new("Part")
+-- Adjust CFrame to be slightly behind the HumanoidRootPart
+part.CFrame = player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 50)  -- Move it 5 studs behind
+local weld = Instance.new("WeldConstraint")
+weld.Part0 = part
+weld.Part1 = player.Character.HumanoidRootPart
+weld.Parent = part
+part.Size = Vector3.new(90, 90, 2)
+part.Parent = workspace
+part.CanCollide = false
+local particle1 = Instance.new("ParticleEmitter")
+part.Transparency = 1
+particle1.Parent = part
+particle1.Texture = "rbxassetid://16028031917"
+particle1.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid2x2  -- Set this to a grid layout for flipbook animation
+particle1.FlipbookMode = Enum.ParticleFlipbookMode.Loop  -- Make the flipbook loop
+particle1.FlipbookStartRandom = true  -- Start from a random frame in the flipbook
+particle1.Speed = NumberRange.new(600, 600)  -- Use a NumberRange for the Speed
+particle1.Rate = 450
+particle1.Lifetime = NumberRange.new(0.2, 0.4)
+particle1.Size = NumberSequence.new(5)
+particle1.FlipbookFramerate = NumberRange.new(0, 0) -- Set the framerate for the flipbook animation (frames per second)
+particle1.Squash = NumberSequence.new(-4)
+particle1.Transparency = NumberSequence.new(0.837, 1)
+particle1.Orientation = Enum.ParticleOrientation.VelocityParallel
+particle1.Rotation = NumberRange.new(0)
+particle1.LockedToPart = true
+particle1.EmissionDirection = Enum.NormalId.Front
+
+local particle2 = particle1:Clone()
+particle2.Parent = part
+particle2.Color = ColorSequence.new(Color3.fromRGB(0, 0, 0), Color3.fromRGB(0, 0, 0))  -- Set both start and end colors to black
+
+
+    Anim.Stopped:Wait()
+    move:Destroy()
+	part:Destroy()
+ 
+    -- Wait for 15 seconds while player walks
+    wait(6)
+ 
+    -- Reset walkspeed to normal (default is 16)
+    --player.Character.Humanoid.WalkSpeed = 16
+ 
+    -- Wait for animation to finish
+    Anim.Stopped:Wait()
+    print("Animation, sound, and walking finished!")
+end)
+ 
+-- Parent the tool to the player's backpack
+tool.Parent = backpack
+-- UFW --
+		--Rayfield:Notify("Bludud","KJ Dropkick Clicked!",72766301682132)
+	end,
+})
+
 local Loadstrings = window:CreateTab("Loadstrings/scripts")
 local Section2 = Loadstrings:CreateSection("Scripts")
 

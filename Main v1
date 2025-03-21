@@ -31,7 +31,12 @@ local button = Tab:CreateButton({
 	Name = "Speed boost",
 	Callback = function()
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed += 5
-		--Rayfield:Notify("Bludud","Speed boost clicked!",72766301682132)
+		Rayfield:Notify({
+	Title = "Bluhub",
+	Content = "Used Speed Boost",
+	Duration = 4,
+	Image = 4483362458,
+})
 	end,
 })
 
@@ -54,7 +59,12 @@ local button1 = Tab:CreateButton({
 	Callback = function()
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
 		SpeedSlider:Set(16)
-		--Rayfield:Notify("Bludud","Speed boost clicked!",72766301682132)
+		Rayfield:Notify({
+	Title = "Bluhub",
+	Content = "Used Reset Speed",
+	Duration = 4,
+	Image = 4483362458,
+})
 	end,
 })
 
@@ -151,7 +161,12 @@ end)
 -- Parent the tool to the player's backpack
 tool.Parent = backpack
 -- UFW --
-		--Rayfield:Notify("Bludud","KJ Dropkick Clicked!",72766301682132)
+		Rayfield:Notify({
+	Title = "Bluhub",
+	Content = "Used KJ Dropkick",
+	Duration = 4,
+	Image = 4483362458,
+})
 	end,
 })
 

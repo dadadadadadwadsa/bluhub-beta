@@ -655,7 +655,7 @@ local Button = Loadstrings:CreateButton({
 
 })
 
-local Button = Loadstrings:CreateButton({
+local ButtonC00l = Loadstrings:CreateButton({
 	Name = "C00lgui by 007n7",
 	Callback = function()
 		loadstring(game:HttpGet("https://rawscripts.net/raw/Natural-Disaster-Survival-c00lgui-Fe-11212"))()

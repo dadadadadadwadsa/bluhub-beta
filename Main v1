@@ -666,4 +666,3 @@ local ButtonC00l = Loadstrings:CreateButton({
 -- fly = loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()
 
 Rayfield:LoadConfiguration()
-Rayfield:LoadConfiguration()

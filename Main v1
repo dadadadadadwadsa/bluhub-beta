@@ -652,6 +652,15 @@ local Button = Loadstrings:CreateButton({
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end,
+
+})
+
+local Button = Loadstrings:CreateButton({
+	Name = "C00lgui by 007n7",
+	Callback = function()
+		loadstring(game:HttpGet("https://rawscripts.net/raw/Natural-Disaster-Survival-c00lgui-Fe-11212"))()
+	end,
+
 })
 
 -- fly = loadstring(game:HttpGet('https://pastebin.com/raw/YSL3xKYU'))()

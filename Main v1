@@ -1,49 +1,61 @@
-local library = loadstring(game:GetObjects("rbxassetid://71920117413235")[1].Source)()
-local Wait = library.subs.Wait
-
-local plr = game.Players.LocalPlayer
-
-local char = plr.Character or plr.CharacterAdded:Wait()
-
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/dadadadadadwadsa/bluhub-beta/refs/heads/main/ui%20lib"))() --you can go into the github link and copy all of it and modify it for yourself.
+local Window = Library:CreateWindow("Flip's Gui v8", Vector2.new(492, 598), Enum.KeyCode.RightControl) --you can change your UI keybind
+local AimingTab = Window:CreateTab("Universal") --you can rename this tab to whatever you want --you can also change the tabs code, for example "AimingTab" can be changed to "FunnyCoolTab" etc.
+local play = game.Players.LocalPlayer
+local char = play.Character
 local hum = char.Humanoid
 
-local Main = library:CreateWindow({
-Name = "Flip's Gui",
-Themeable = {
-Info = "Discord Server: VzYTJ7Y"
-}
-})
+local testSection = AimingTab:CreateSector("Speed Stuff", "left")  --you can  change the section code, for example "testsection" can be changed to "FunnyCoolSection" etc.
 
-local GeneralTab = Main:CreateTab({
-   Name = "General"
-})
+testSection:AddButton("Speed Boost", function(IhateGayPeople)
+    hum.WalkSpeed += 4
+end)
 
-local Section1 = GeneralTab:CreateSection({
-  Name = "Section 1"
-})
---Section1:AddToggle({
-  -- Name = "Print Test",
-  -- Flag = "PrintTest_Toggler",
-  -- Callback = print
---})
+testSection:AddSlider("Speed Slider", 0, 16, 100, 1, function(State)
+    hum.WalkSpeed = State
+end)
 
-Section1:AddSlider({
-    Name = "Walkspeed",
-    Flag = "Walk_Speed",
-    Value = 16,
-    Min = 0,
-    Max = 200,
-	Callback = function(Value)
-			hum.WalkSpeed = Value
-	end
-})
+testSection:AddTextbox("Speed TextBox", nil, function(State)
+    hum.WalkSpeed = State
+end)
 
-Section1:AddButton({
-    Name = "Reset WalkSpeed",
-    Callback = function()
-        print("Fixed WalkSpeed")
-		hum.WalkSpeed = 16
-    end
-})
+--testSection:AddDropdown("Dropdown", {"AH", "ytytyt", "rrro", "awhjdajksd"}, "AH", true, function(dropdown)
+
+--end)
+
+--local ColorToggle = testSection:AddToggle("ColorPicker w/Toggle", false, function(e)
+
+--end)
+
+local separator = testSection:AddSeperator("Jump Stuff")
+
+testSection:AddButton("JumpPower Boost", function(IhateGayPeople)
+    hum.JumpPower += 4
+end)
+
+testSection:AddSlider("JumpPower Slider", 0, 50, 100, 1, function(State)
+    hum.JumpPower = State
+end)
+
+testSection:AddTextbox("JumpPower TextBox", nil, function(State)
+    hum.JumpPower = State
+end)
+
+--local testSection2 = AimingTab:CreateSector("Yeyeya", "right")
+
+--testSection2:AddToggle("Toggle", false, function(first)
+    --print(first)
+--end)
 
 
+local Settings = Window:CreateTab("Settings")
+
+local SettingSection = Settings:CreateSector("Settings", "left")
+
+local ToggleBind = SettingSection:AddToggle("Test", false, function(e)
+
+end)
+
+ToggleBind:AddKeybind()
+
+--Settings:CreateConfigSystem("left") --this is the config system

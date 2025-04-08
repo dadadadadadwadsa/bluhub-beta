@@ -10,6 +10,11 @@ local player = game.Players.LocalPlayer
 local char = player.Character or player.CharacterAdded:Wait()
 local hum = char:WaitForChild("Humanoid")
 
+player.CharacterAdded:Connect(function(Character)
+	char = Character
+	hum = char:WaitForChild("Humanoid")
+end)
+
 local Options = Library.Options
 local Toggles = Library.Toggles
 
@@ -383,7 +388,3 @@ ThemeManager:ApplyToTab(Tabs["UI Settings"])
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
 
-player.CharacterAdded:Connect(function(Character)
-	char = Character
-	hum = char:WaitForChild("Humanoid")
-end)

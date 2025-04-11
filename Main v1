@@ -172,8 +172,8 @@ WarningTab:UpdateWarningBox({
 
 -- Groupbox and Tabbox inherit the same functions
 -- except Tabboxes you have to call the functions on a tab (Tabbox:AddTab(name))
-local LeftGroupBox = Tabs.Main:AddLeftGroupbox("Groupbox")
-local RightGroupBox = Tabs.Main:AddRightGroupbox("Other Stuff")
+local LeftGroupBox = Tabs.Main:AddLeftGroupbox("Main Stuff")
+local RightGroupBox = Tabs.Main:AddRightGroupbox("OP Stuff")
 
 -- We can also get our Main tab via the following code:
 -- local LeftGroupBox = Window.Tabs.Main:AddLeftGroupbox('Groupbox')

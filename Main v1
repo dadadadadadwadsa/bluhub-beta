@@ -6,6 +6,110 @@ local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 
+getgenv().BoxOutline = false -- or false to disable
+
+local players = game.Players
+local runserv = game:GetService("RunService")
+local localPlayer = players.LocalPlayer
+
+local cache = {}
+local camera = workspace.CurrentCamera
+
+local function createDrawing(name, properties)
+	local drawing = Drawing.new(name)
+	for i, v in pairs(properties) do
+		drawing[i] = v
+	end
+	return drawing
+end
+
+local function addPlayerBox(player)
+	if cache[player] then return end
+
+	cache[player] = {
+		boxOutline = createDrawing("Square", {
+			Thickness = 2,
+			Color = Color3.new(0, 0, 0),
+			Visible = false,
+			Filled = false,
+		}),
+
+		box = createDrawing("Square", {
+			Thickness = 1,
+			Color = Color3.new(1, 1, 1),
+			Visible = false,
+			Filled = false,
+		}),
+	}
+end
+
+local function removePlayerBox(player)
+	if cache[player] then
+		cache[player].boxOutline:Destroy()
+		cache[player].box:Destroy()
+		cache[player] = nil
+	end
+end
+
+for _, v in pairs(players:GetPlayers()) do
+	if v ~= localPlayer then
+		addPlayerBox(v)
+	end
+end
+
+players.PlayerAdded:Connect(function(player)
+	if player ~= localPlayer then
+		addPlayerBox(player)
+	end
+end)
+
+players.PlayerRemoving:Connect(removePlayerBox)
+runserv.RenderStepped:Connect(function()
+	if not getgenv().BoxOutline then
+		for _, espCache in pairs(cache) do
+			espCache.boxOutline.Visible = false
+			espCache.box.Visible = false
+		end
+		return
+	end
+
+	for player, espCache in pairs(cache) do
+		local boxOutline = espCache.boxOutline
+		local box = espCache.box
+
+		local character = player.Character
+		if character and character:FindFirstChild("HumanoidRootPart") then
+			local center, size = character:GetBoundingBox()
+			local centerSP, onScreen = camera:WorldToViewportPoint(center.Position)
+
+			if onScreen then
+				local topPos = camera:WorldToViewportPoint(center.Position + Vector3.new(0, size.Y / 2, 0))
+				local bottomPos = camera:WorldToViewportPoint(center.Position - Vector3.new(0, size.Y / 2, 0))
+
+				local height = math.abs(topPos.Y - bottomPos.Y)
+				local width = height / 1.2
+
+				local position = Vector2.new(centerSP.X - width / 2, centerSP.Y - height / 2)
+
+				boxOutline.Size = Vector2.new(width, height)
+				boxOutline.Position = position
+
+				box.Size = boxOutline.Size
+				box.Position = boxOutline.Position
+
+				boxOutline.Visible = true
+				box.Visible = true
+			else
+				boxOutline.Visible = false
+				box.Visible = false
+			end
+		else
+			boxOutline.Visible = false
+			box.Visible = false
+		end
+	end
+end)
+
 local player = game.Players.LocalPlayer
 local char = player.Character or player.CharacterAdded:Wait()
 local hum = char:WaitForChild("Humanoid")
@@ -286,6 +390,16 @@ LeftGroupBox:AddSlider("JumpPower", {
 	Disabled = false, -- Will disable the slider (true / false)
 	Visible = true, -- Will make the slider invisible (true / false)
 })
+
+local MyToggle = LeftGroupBox:AddToggle("MyToggle", {
+    Text = "Example Toggle",
+    Default = false,
+    Tooltip = "This is a toggle",
+    Callback = function(Value)
+		getgenv().BoxOutline = not getgenv().BoxOutline
+    end
+})
+
 
 -- Groupbox:AddDropdown
 -- Arguments: Idx, Info

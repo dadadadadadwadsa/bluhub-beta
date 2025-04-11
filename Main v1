@@ -101,6 +101,12 @@ local MyButton = LeftGroupBox:AddButton({
 	Text = "Speed Boost",
 	Func = function()
 		hum.WalkSpeed += 4
+	--Library:Notify({
+       -- Title = "Success",
+       -- Description = "Operation completed successfully",
+       -- Time = 0.5, -- Duration in seconds
+       -- SoundId = 123456789 -- Optional sound ID
+    --})
 	end,
 	DoubleClick = false,
 
@@ -378,4 +384,3 @@ ThemeManager:ApplyToTab(Tabs["UI Settings"])
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
-

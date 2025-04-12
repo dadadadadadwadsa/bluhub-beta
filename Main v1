@@ -1,5 +1,6 @@
 -- example script by https://github.com/mstudio45/LinoriaLib/blob/main/Example.lua and modified by deivid
 -- You can suggest changes with a pull request or something
+-- https://discord.gg/NGMu2ZF4dr
 
 local repo = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
 local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
@@ -140,6 +141,13 @@ local Window = Library:CreateWindow({
 	Icon = nil,
 	NotifySide = "Right",
 	ShowCustomCursor = false,
+})
+
+Library:Notify({
+    Title = "Loaded GUI",
+    Description = "(discord.gg/NGMu2ZF4dr)",
+    Time = 5, -- Duration in seconds
+    SoundId = 7695856187 -- Optional sound ID
 })
 
 -- CALLBACK NOTE:

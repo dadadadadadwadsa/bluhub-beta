@@ -400,6 +400,28 @@ LeftGroupBox:AddSlider("JumpPower", {
 	Visible = true, -- Will make the slider invisible (true / false)
 })
 
+LeftGroupBox:AddDivider()
+
+LeftGroupBox:AddSlider("FOV", {
+	Text = "FOV",
+	Default = 70,
+	Min = 0,
+	Max = 300,
+	Rounding = 0,
+	Compact = false,
+
+	Callback = function(Value)
+		--print("[cb] MySlider was changed! New value:", Value)
+                game.workspace.CurrentCamera.FieldOfView = Value
+	end,
+
+	Tooltip = "Changes Ur FOV [Field of view] To the slider's value", -- Information shown when you hover over the slider
+	DisabledTooltip = "disabled", -- Information shown when you hover over the slider while it's disabled
+
+	Disabled = false, -- Will disable the slider (true / false)
+	Visible = true, -- Will make the slider invisible (true / false)
+})
+
 local ESPBox = RightGroupBox:AddToggle("ESPBox", {
     Text = "ESPBox",
     Default = false,

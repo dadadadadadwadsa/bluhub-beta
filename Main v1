@@ -406,7 +406,7 @@ LeftGroupBox:AddSlider("FOV", {
 	Text = "FOV",
 	Default = 70,
 	Min = 0,
-	Max = 300,
+	Max = 120,
 	Rounding = 0,
 	Compact = false,
 

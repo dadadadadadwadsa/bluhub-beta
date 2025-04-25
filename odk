@@ -2,12 +2,6 @@
 --[[
 	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
 ]]
-if jumpscare_jeffwuz_loaded and not _G.jumpscarefucking123 == true then
-	warn("Already Loading")
-    return
-end
-
-pcall(function() getgenv().jumpscare_jeffwuz_loaded = true end)
 
 getgenv().Notify = true
 local Notify_Webhook = "https://discord.com/api/webhooks/1365132874789027941/hBsoqvWt1VPE4dzI-uzhj88GZDlxIm4yEhOkaqkvzt3zH5RXWLmN7uk8CBIFt8CWA9e1
